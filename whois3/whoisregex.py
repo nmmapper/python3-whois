@@ -9,7 +9,7 @@ class WhoisRegex(object):
             ['Registrar WHOIS Server:\s?(?P<registrar_whois_server>.+)'],
             ['Registrar URL:\s?(?P<registrar_url>.+)'],
             ['Updated Date:\s?(?P<updated_date>.+)'],
-            ['Creation Date\s?(?P<creation_date>.+)'],
+            ['Creation Date:\s?(?P<creation_date>.+)'],
             ['Registry Expiry Date:\s?(?P<registry_expiry_date>.+)'],
             ['Registrar:\s?(?P<registrar>.+)'],
             ['Registrar IANA ID:\s?(?P<registrar_iana_id>.+)'],

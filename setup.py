@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python3-whois", 
-    version="1.0.0",
+    version="1.1.0",
     author="nmmapper",
     author_email="inquiry@nmmapper.com",
     description="python implementation for the linux whois utility parsing the reults",
