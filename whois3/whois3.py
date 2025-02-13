@@ -2,9 +2,9 @@ import shlex
 import os
 import re
 import subprocess
-from utils import get_whois_path
-from exceptions import WhoisNotInstalledError, WhoisExecutionError
-from whoisregex import WhoisRegex
+from whois3.utils import get_whois_path
+from whois3.exceptions import WhoisNotInstalledError, WhoisExecutionError
+from whois3.whoisregex import WhoisRegex
 import json
 
 class Whois(object):

@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python3-whois", 
-    version="1.9.1",
+    version="1.0.0",
     author="nmmapper",
     author_email="inquiry@nmmapper.com",
     description="python implementation for the linux whois utility parsing the reults",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/nmmapper/python3-nmap",
+    url="https://github.com/nmmapper/python3-whois",
     project_urls={
         'Documentation': 'https://nmap.readthedocs.io/en/latest/',
         'How it is used': 'https://www.nmmapper.com/sys/networkmapper/nmap/online-port-scanning/',
