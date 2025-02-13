@@ -60,3 +60,8 @@ class WhoisRegex(object):
         # This regex return list based results
         self.regex_nameserver  = ['Name Server:\s?(?P<name_servers>.+)'] # Will require using re.findall()
         self.regex_status =  ['Domain Status:\s?(?P<domain_status>.+)']  # Will require using re.findall()
+        
+        # Extra regex Similar to Creation Date\s?(?P<creation_date>.+)
+        self.domain_record_activated = 'Domain record activated\s?(?P<creation_date>.+)'
+        self.domain_record_updated = 'Domain record last updated\s?(?P<record_updated>.+)'
+        self.domain_record_expired = 'Domain expires\s?(?P<record_expires>.+)'

@@ -46,7 +46,7 @@ class Whois(object):
                 # Response is bytes so decode the output and return
                 return output.decode('utf8').strip()
         else:
-            raise NmapNotInstalledError()
+            raise WhoisExecutionError()
     
     def precompile_regexes(self, source, flags=0):
         return [re.compile(regex, flags) for regex in source]
