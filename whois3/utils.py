@@ -2,6 +2,8 @@ import shlex
 import subprocess
 import functools
 
+VERSION='1.1.2'
+
 def get_whois_path():
     """
     Returns the location path where whois is installed

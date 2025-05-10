@@ -4,7 +4,7 @@ import re
 import subprocess
 from whois3.utils import get_whois_path
 from whois3.exceptions import WhoisNotInstalledError, WhoisExecutionError
-from whois3.whoisregex import WhoisRegex
+from whois3.whoisregex import WhoisParser
 import json
 
 class Whois(object):
@@ -16,7 +16,7 @@ class Whois(object):
         
         self.whoiscmd = path if path else get_whois_path()
         self.timeout = 10
-        self.wregex = WhoisRegex()
+        self.wparser = WhoisParser()
         self.registrar_info = {}
         
     def get_default_cmd(self, domain, args=None):
@@ -58,22 +58,8 @@ class Whois(object):
             scan_shlex = shlex.split(cmd)
             results = self.run_command(scan_shlex)
             
-            for rg in self.wregex.regex:
-                compiled = self.precompile_regexes(rg, re.IGNORECASE)
+            return self.wparser.parse(domain, results)
                 
-                for cmp_reg in compiled:
-                    result = cmp_reg.search(results)
-                    
-                    if(result):
-                        data = result.groupdict()
-                        self.registrar_info.update(data)
-                    
-                    # Get domain status and nameserver
-                    self.parse_domain_status(results)
-                    self.parse_domain_nameserver(results)
-                    
-            return self.registrar_info
-            
         except Exception as e:
             raise 
     
@@ -88,7 +74,6 @@ class Whois(object):
         except Exception as e:
             raise
             
-            
     def parse_domain_nameserver(self, data):
         """Domain status tends to be list"""
         try:
@@ -100,7 +85,7 @@ class Whois(object):
                 self.registrar_info["nameservers"]=list(set(results)) # filter duplicates
         except Exception as e:
             raise
-            
+ 
 if __name__=="__main__":
     m = Whois()
     r = m.whois("ipv4info.com")
