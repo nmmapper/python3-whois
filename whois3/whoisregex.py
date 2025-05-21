@@ -12,6 +12,7 @@ class WhoisParser:
             ".net": self._parse_default,
             ".org": self._parse_default,
             ".de": self._parse_default,
+            ".no": self._parse_no,
         }
 
     def parse(self, domain: str, whois_data: str) -> Dict:
@@ -67,6 +68,30 @@ class WhoisParser:
 
         result['name_servers'] = re.findall(r"p\.\s+\[Name Server\]\s+(.+)", data)
         return result
+    
+    def _parse_no(self, data: str) -> Dict:
+        result = {}
+
+        patterns = {
+            "domain_name": r"Domain Name\.*:\s*(.+)",
+            "norid_handle": r"NORID Handle\.*:\s*(.+)",
+            "registrar_handle": r"Registrar Handle\.*:\s*(.+)",
+            "registrar": r"Registrar Handle\.*:\s*(.+)",
+            "tech_handle": r"Tech-c Handle\.*:\s*(.+)",
+            "created": r"Created:\s*(.+)",
+            "creation_date": r"Created:\s*(.+)",
+            "last_updated": r"Last updated:\s*(.+)",
+            "updated_date": r"Last updated:\s*(.+)"
+        }
+
+        for key, pattern in patterns.items():
+            match = re.search(pattern, data, re.IGNORECASE)
+            if match:
+                result[key] = match.group(1).strip()
+
+        result["name_servers"] = re.findall(r"Name Server Handle\.*:\s*(.+)", data)
+        return result
+
 
     def _parse_default(self, data: str) -> Dict:
         result = {}
