@@ -2,7 +2,7 @@ import shlex
 import subprocess
 import functools
 
-VERSION='1.1.3'
+VERSION='1.1.4'
 
 def get_whois_path():
     """
